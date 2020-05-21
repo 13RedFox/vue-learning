@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS</title>
+  </head>
+  <body>
+    <!-- 
+      TODO: Изучение по книге.
+     -->
+    <div id="app">
+      <!-- ? Отрисовка массива -->
+      <h1>Давайте послушаем несколько историй!</h1>
+      <ul class="list__group">
+        <li
+          v-for="(story, index) in stories"
+          :key="index"
+          class="list__group-item"
+        >
+        {{ index + 1 }} {{ story.writer }} сказал {{ story.plot }}
+      </li>
+      </ul>
+      <!-- ? Пример 2 -->
+      <h1>Таблица умножения на 4</h1>
+      <ul class="list__group">
+        <li v-for="i in 5" class="list__group-item">
+          {{ i }} умножить на 4 равно {{ i * 4 }}
+        </li>
+      </ul>
+      <!-- ? Пример 1 -->
+      <h1 v-if="!message">
+        Вы должны написать сообщение для получения помощи!
+      </h1>
+      <h2 v-else>Вы отправили сообщение!</h2>
+      <textarea v-model="message"></textarea>
+      <br />
+      <button type="submit" v-if="message">
+        Отправить послание всем союзникам для помощи!
+      </button>
+      <pre>{{ $data }}</pre>
+    </div>
+    <!-- 
+      ! Практика домашних примеров
+     -->
+    <div id="app2">
+      <!-- ? Пример 3 -->
+      <h1>Это я</h1>
+      <ul>
+        <li v-for="(value, key, index) in personalQualities" :key="index">
+          {{ index }}: {{ key }} = {{ value }}
+        </li>
+      </ul>
+      <!-- ? Пример 1 + 2 -->
+      <hr />
+      <div v-if="gender === 'male' || gender === 'female'">
+        <h1>
+          Привет,
+          <span v-show="gender === 'female'">Мисс {{name}}.</span>
+          <span v-if="gender === 'male'">Мистер {{ name }}.</span>
+        </h1>
+      </div>
+      <h1 v-else>Так, значит, вы не можете решить. Отлично</h1>
+      <label for="gender">Введите свой пол:</label>
+      <input v-model="gender" type="text" id="gender" />
+      <label for="name">Введите свое имя:</label>
+      <input v-model="name" type="text" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
