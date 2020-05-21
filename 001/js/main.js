@@ -1,6 +1,6 @@
 "use strict";
 /**
- * TODO: Изучение по книге.
+ * ! Изучение по книге.
  */
 new Vue({
   el: "#app",
@@ -24,6 +24,28 @@ new Vue({
         writer: "Алекс",
       },
     ],
+    a: 1,
+    b: 2,
+    c: null,
+    operator: "+",
+  },
+  methods: {
+    calculate: function () {
+      switch (this.operator) {
+        case "+":
+          this.c = this.a + this.b;
+          break;
+        case "-":
+          this.c = this.a - this.b;
+          break;
+        case "*":
+          this.c = this.a * this.b;
+          break;
+        case "/":
+          this.c = this.a / this.b;
+          break;
+      }
+    },
   },
 });
 
@@ -42,5 +64,27 @@ new Vue({
       eyeColor: "Коричневый",
       favoriteFood: "Долма",
     },
+    candidates: [
+      { name: "Мистер Черный", votes: 140 },
+      { name: "Мистер Белый", votes: 135 },
+      { name: "Мистер Розовый", votes: 145 },
+      { name: "Мистер Коричневый", votes: 130 },
+    ],
+  },
+  computed: {
+    mayor: function () {
+      let candidateSorter = this.candidates.sort(function (a,b) {
+        return b.votes - a.votes;
+      });
+      return candidateSorter[0];
+    }
+  },
+  methods: {
+    clear: function() {
+      this.candidates = this.candidates.map(function(candidate) {
+        candidate.votes = 0;
+        return candidate;
+      })
+    }
   },
 });

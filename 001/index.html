@@ -6,10 +6,22 @@
     <title>Vue JS</title>
   </head>
   <body>
-    <!-- 
-      TODO: Изучение по книге.
-     -->
+    <!-- TODO: Изучение по книге. -->
     <div id="app">
+      <!-- ? Интерактивность -->
+      <h1>Введите 2 числа и выберите операцию.</h1>
+      <form>
+        <input v-model.number="a" />
+        <select v-model="operator">
+          <option>+</option>
+          <option>-</option>
+          <option>/</option>
+          <option>*</option>
+        </select>
+        <input v-model.number="b" />
+        <button type="submit" @click.prevent="calculate">Вычислить</button>
+      </form>
+      <h2>Результат: {{ a }} {{ operator }} {{ b }} = {{ c }}</h2>
       <!-- ? Отрисовка массива -->
       <h1>Давайте послушаем несколько историй!</h1>
       <ul class="list__group">
@@ -18,8 +30,8 @@
           :key="index"
           class="list__group-item"
         >
-        {{ index + 1 }} {{ story.writer }} сказал {{ story.plot }}
-      </li>
+          {{ index + 1 }} {{ story.writer }} сказал {{ story.plot }}
+        </li>
       </ul>
       <!-- ? Пример 2 -->
       <h1>Таблица умножения на 4</h1>
@@ -40,18 +52,32 @@
       </button>
       <pre>{{ $data }}</pre>
     </div>
-    <!-- 
-      ! Практика домашних примеров
-     -->
+    <!--! Практика домашних примеров -->
     <div id="app2">
-      <!-- ? Пример 3 -->
+      <!-- TODO: Пример 4 -->
+      <hr />
+      <h1>Люди Vue</h1>
+      <ul>
+        <li v-for="(candidate, index) in candidates" :key="index">
+          {{ candidate.name }} {{ candidate.votes }}
+          <button @click="candidate.votes++">Голосовать</button>
+        </li>
+      </ul>
+      <input
+        @keyup.delete="clear"
+        type="text"
+        placeholder="press 'delete' to reset"
+      />
+      <h2>Наш мэр - {{ mayor.name }}</h2>
+      <!-- TODO: Пример 3 -->
+      <hr />
       <h1>Это я</h1>
       <ul>
         <li v-for="(value, key, index) in personalQualities" :key="index">
           {{ index }}: {{ key }} = {{ value }}
         </li>
       </ul>
-      <!-- ? Пример 1 + 2 -->
+      <!-- TODO: Пример 1 + 2 -->
       <hr />
       <div v-if="gender === 'male' || gender === 'female'">
         <h1>
