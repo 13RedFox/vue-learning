@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Vue JS | Теория. Основы Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- ! Блок 2 -->
+
+      <!-- TODO: Интерполяция -->
+      <hr />
+      <h3>String: {{ name }}</h3>
+      <h3>Sum (10 + 60): {{ 10 + 60 }}</h3>
+      <h3>Number: {{ number }}</h3>
+      <h3>Method: {{ sayHello() }}</h3>
+      <h3>If statement: {{ isOk ? 'I am OK!' : 'I am not OK!' }}</h3>
+      <h3>Functions: {{ string.split('').reverse().join('') }}</h3>
+
+      <!-- TODO: Динамические атрибуты
+           * деректива v-bind или сокращенная форма : -->
+      <hr />
+      <h3>
+        <a :href="url">Google</a>
+      </h3>
+
+      <!-- TODO: Вывод HTML кода.
+      <!-- * Деректива v-html служит для вывода готового html-кода -->
+      <hr />
+      <h3 v-html="link"></h3>
+
+      <!-- TODO: Добавление событий
+           * Деректива v-on: или сокращенная форма @ -->
+      <hr />
+      <h3>Счетчик = {{ counter }}</h3>
+      <button @click="riseCounter">Увеличить</button>
+      <br />
+      <br />
+      <h3 @mouseover="onHover">Счетчик 2 = {{ counter2 }}</h3>
+      <button @click="counter2++">Увеличить</button>
+
+      <!-- ? Передача параметров в метод -->
+      <hr />
+      <h3>{{ title }} = {{ counter3 }}</h3>
+      <button @click="riseCounter2(5, 'Изменено на 5', $event)">
+        Увеличить на 5
+      </button>
+      <button @click="riseCounter2(10, 'Изменено на 10', $event)">
+        Увеличить на 10
+      </button>
+
+      <!-- TODO: Модификаторы событий 
+           * .prevent ==> preventDefault() в JS -->
+      <hr />
+      <h3>
+        <a
+          href="http://google.com"
+          target="_blank"
+          @click.prevent="clickOnGoogle"
+          >Google</a
+        >
+      </h3>
+      <h3 @mousemove="handleMouseMove">
+        X: {{ x }} / Y: {{ y }}
+        <span @mousemove.stop="">Не изменять</span>
+      </h3>
+
+      <!-- TODO: Модификаторы событий клавиатуры -->
+      <hr />
+      <input type="text" @keyup.enter="alertValue" />
+
+      <!-- TODO: Модель для работы с формами -->
+      <hr />
+      <input type="text" v-model.lazy="inputValue" />
+      <h3>{{ inputValue }}</h3>
+
+      <!-- TODO: Работа с CSS классами -->
+      <hr />
+      <div
+        class="circle"
+        @click="isActive = !isActive"
+        :class="getCssClasses"
+      ></div>
+      <div class="circle" :class="[color, {'red': isActive}]"></div>
+      <input type="text" v-model="color" />
+
+      <!-- TODO: Динамические стили -->
+      <hr />
+      <div class="circle" :style="circleClasses"></div>
+      <div
+        class="circle"
+        :style="[circleClasses, {'width': height + 'px'}]"
+      ></div>
+      <input type="text" v-model="color2" />
+      <input type="text" v-model="height" />
+
+      <!-- TODO: Управление отображением элементов -->
+      <hr />
+      <h3 v-if="type === 'a'">a</h3>
+      <h3 v-else-if="type === 'b'">b</h3>
+      <h3 v-else-if="type === 'c'">c</h3>
+      <h3 v-else>Not match!</h3>
+      <input type="text" v-model="type" />
+      <template v-if="isVisible">
+        <h3>I am title</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, minus.
+        </p>
+      </template>
+      <template v-else>
+        <h3 style="color: red;">I am title</h3>
+        <p style="color: blue;">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, minus.
+        </p>
+      </template>
+
+      <!-- TODO: Директива v-show vs v-if
+          * v-if - стирает элементы с DOM-дерева
+          * v-show - делает элементам стиль display: none
+          * не удаляя с DOM-дерева элементы, а скрывая их -->
+      <hr />
+      <h3 v-show="isVisible2">I am visible</h3>
+      <h3 v-show="!isVisible2">You can't see me!</h3>
+      <button @click="isVisible2 = !isVisible2">Toggle</button>
+
+      <!-- TODO: Работа со списками -->
+      <hr />
+
+      <!-- ! Конец блока 2 -->
+    </div>
+
+    <!-- ! Scripts: -->
+    <!-- * CDN Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- * Main script file -->
+    <script src="./js/main.js"></script>
+  </body>
+</html>
