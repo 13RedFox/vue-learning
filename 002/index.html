@@ -20,19 +20,19 @@
       <h3>Functions: {{ string.split('').reverse().join('') }}</h3>
 
       <!-- TODO: Динамические атрибуты
-           * деректива v-bind или сокращенная форма : -->
+          * деректива v-bind или сокращенная форма : -->
       <hr />
       <h3>
         <a :href="url">Google</a>
       </h3>
 
       <!-- TODO: Вывод HTML кода.
-      <!-- * Деректива v-html служит для вывода готового html-кода -->
+          * Деректива v-html служит для вывода готового html-кода -->
       <hr />
       <h3 v-html="link"></h3>
 
       <!-- TODO: Добавление событий
-           * Деректива v-on: или сокращенная форма @ -->
+          * Деректива v-on: или сокращенная форма @ -->
       <hr />
       <h3>Счетчик = {{ counter }}</h3>
       <button @click="riseCounter">Увеличить</button>
@@ -41,7 +41,7 @@
       <h3 @mouseover="onHover">Счетчик 2 = {{ counter2 }}</h3>
       <button @click="counter2++">Увеличить</button>
 
-      <!-- ? Передача параметров в метод -->
+      <!-- TODO: Передача параметров в метод -->
       <hr />
       <h3>{{ title }} = {{ counter3 }}</h3>
       <button @click="riseCounter2(5, 'Изменено на 5', $event)">
@@ -52,7 +52,7 @@
       </button>
 
       <!-- TODO: Модификаторы событий 
-           * .prevent ==> preventDefault() в JS -->
+          * .prevent ==> preventDefault() в JS -->
       <hr />
       <h3>
         <a
@@ -125,11 +125,65 @@
       <h3 v-show="!isVisible2">You can't see me!</h3>
       <button @click="isVisible2 = !isVisible2">Toggle</button>
 
-      <!-- TODO: Работа со списками -->
+      <!-- TODO: Работа со списками
+          * Деректива v-for - работа со списками (циклы) -->
+      <hr />
+      <ul>
+        <li v-for="(person, index) in people">
+          {{ index + 1 }}. {{ person.name }} - {{ person.age }}
+        </li>
+      </ul>
+      <ol>
+        <li v-for="num of 4">{{ num }}</li>
+      </ol>
+      <ul>
+        <li v-for="(value, key, index) in person">
+          {{ index + 1 }}. {{ key }}: {{ value }}
+        </li>
+      </ul>
+
+      <!-- TODO: Оптимизация приложения с computed -->
+      <hr />
+      <h2>Counter: {{ counter4 }} / {{ counter5 }}</h2>
+      <h2>Result: {{ result() }}</h2>
+      <h2>Computed result: {{ computedResult }}</h2>
+      <button @click="add">Add</button>
+      <button @click="sub">Sub</button>
+      <button @click="counter5++">Add counter 5</button>
+
+      <!-- TODO: Отслеживание изменений с watch
+          * через watch -->
       <hr />
 
-      <!-- ! Конец блока 2 -->
+      <!-- TODO: Связывание разных приложений. Инстанс vue -->
+      <hr />
+      <h2>{{ title }}</h2>
+      <button @click="title = 'Update title'">Update title</button>
+
+      <!-- TODO: Доступ к DOM элементам -->
+      <hr />
+      <h2 ref="heading">{{ title1 }}</h2>
+      <button @click="updateFirstTitle1">Update title</button>
+
+      <!-- TODO: Жизненный цикл -->
+      <hr />
+      <h2>{{ title2 }}</h2>
+      <button @click="title2 = 'Change title'">Change</button>
     </div>
+
+    <div id="app2">
+      <!-- TODO: Связывание разных приложений. Инстанс vue -->
+      <hr />
+      <h2>{{ title }}</h2>
+      <button @click="updateFirstTitle">Update First title</button>
+    </div>
+
+    <div id="app3">
+      <!-- TODO: Свойство template -->
+      <hr />
+      <h2>{{ title }}</h2>
+    </div>
+    <!-- ! Конец блока 2 -->
 
     <!-- ! Scripts: -->
     <!-- * CDN Vue JS -->
