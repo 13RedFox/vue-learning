@@ -1,49 +1,44 @@
 <template>
   <div>
-    <h1>Parent: {{ carName }}</h1>
-    <app-counter :counter="counter"></app-counter>
-    <app-car
-      :carName="carName"
-      :carYear="carYear"
-      :counter="counter"
-      :changeFunc="changeNameToAudi"
-      @nameChanged="carName = $event"
-      @counterUpdated="counter = $event"
-    ></app-car>
+    <h2>Form inputs</h2>
+    <input type="text" v-model.lazy="name" />
+    <textarea v-model="textarea"></textarea>
+    <br />
+    <br />
+    <hr />
+    <p>{{ name }}</p>
+    <p>{{ textarea }}</p>
   </div>
 </template>
 
 <script>
-import Car from "./components/Car";
-import Counter from "./components/Counter";
-
 export default {
   data() {
     return {
-      carName: "Ford",
-      carYear: 2018,
-      counter: 0
+      name: "Initial state",
+      textarea: "I am initial text"
     };
-  },
-  methods: {
-    changeNameToAudi() {
-      this.carName = "Audi";
-    }
-  },
-  components: {
-    appCar: Car,
-    appCounter: Counter
   }
 };
 </script>
 
 <style>
-h1 {
+* {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 400px;
+  height: 100px;
+}
+
+p {
+  white-space: pre;
 }
 </style>
