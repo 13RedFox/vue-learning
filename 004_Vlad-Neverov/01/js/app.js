@@ -1,14 +1,16 @@
-let app = new Vue({
+new Vue({
   el: '#app',
   data: {
-    title: 'Hello Vue!',
-    toggleClass: false
+    courses: [],
+    errored: false
   },
-  methods: {
-    toggleFunc() {
-      return {
-        blue: this.toggleClass
-      }
-    }
+  mounted() {
+    axios
+      .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+      .then(response => this.courses = response.data)
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
   }
 })
